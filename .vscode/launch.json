@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+         // Adopted from https://github.com/Marus/cortex-debug/issues/969
+        {
+            "name": "Launch nrf5340dk/nrf5340/cpuapp",
+            "device": "nRF5340_xxAA_app",
+            "cwd": "${workspaceFolder}",
+            "executable": "build/zephyr/zephyr.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "jlink",
+            "gdbPath": "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",            
+            "rtos": "/opt/SEGGER/JLink/GDBServer/RTOSPlugin_Zephyr.so"
+            // or, alternatively until the installation of Segger tools, "rtos": "auto"
+        },
+        {
+            "name": "Attach nrf5340dk/nrf5340/cpuapp",
+            "device": "nRF5340_xxAA_app",
+            "cwd": "${workspaceFolder}",
+            "executable": "build/zephyr/zephyr.elf",
+            "request": "attach",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "jlink",
+            "gdbPath": "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",
+            "rtos": "/opt/SEGGER/JLink/GDBServer/RTOSPlugin_Zephyr.so"
+            // or, alternatively until the installation of Segger tools, "rtos": "auto"
+        },
+    ]
+}

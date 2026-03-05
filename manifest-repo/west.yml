@@ -1,0 +1,26 @@
+manifest:
+  # lowest version of the manifest file schema that can parse this file’s data
+  version: 0.13
+  projects:
+    - name: doxygen-awesome
+      url: https://github.com/jothepro/doxygen-awesome-css
+      # you can also use SSH instead of HTTPS:
+      # url: git@github.com:jothepro/doxygen-awesome-css.git
+      revision: main
+      path: deps/utilities/doxygen-awesome-css
+    - name: zephyr
+      revision: v4.3.0
+      url: https://github.com/zephyrproject-rtos/zephyr
+      path: deps/zephyr
+      west-commands: scripts/west-commands.yml
+      import:
+        path-prefix: deps
+        file: west.yml # not strictly needed since it is the value by default
+        name-allowlist:
+          - cmsis_6
+          - hal_nordic
+          - segger
+    - name: zpp_lib
+      url: https://github.com/AdvEmbSof/zpp_lib.git
+      revision: main
+      path: deps/zpp_lib

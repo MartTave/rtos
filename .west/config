@@ -1,0 +1,10 @@
+[manifest]
+path = manifest-repo
+file = west.yml
+
+[zephyr]
+base = deps/zephyr
+
+[build]
+board = nrf5340dk/nrf5340/cpuapp
+
