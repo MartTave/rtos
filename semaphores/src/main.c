@@ -1,3 +1,20 @@
+/**
+******************************************************************************
+* @file        : main.c
+* @brief       : Semaphore testing
+* @author      : Martin Tavernier <martin.tavernier@hevs.ch>
+* @date        : 05.03.2026
+******************************************************************************
+* @copyright   : Copyright (c) 2026
+*                HEVS
+* @attention   : SPDX-License-Identifier: Apache-2.0
+******************************************************************************
+* @details
+* Small code to test the user/kernel separation of ZephyrOS
+******************************************************************************
+*/
+
+
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 

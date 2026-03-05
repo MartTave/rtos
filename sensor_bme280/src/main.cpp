@@ -1,3 +1,20 @@
+/**
+******************************************************************************
+* @file        : main.cpp
+* @brief       : Fetch data from a BME280 sensor
+* @author      : Martin Tavernier <martin.tavernier@hevs.ch>
+* @date        : 05.03.2026
+******************************************************************************
+* @copyright   : Copyright (c) 2026
+*                HEVS
+* @attention   : SPDX-License-Identifier: Apache-2.0
+******************************************************************************
+* @details
+* Print the value fetched from the bme280 sensor to the console
+******************************************************************************
+*/
+
+
 // stl
 #include <chrono>
 
@@ -17,7 +34,7 @@ LOG_MODULE_REGISTER(sensor_bm280, CONFIG_APP_LOG_LEVEL);
 void read_sensor() {
     static const struct device* bme280_device = DEVICE_DT_GET(BME280_NODE);
 
-    using namespace std::literals;
+    using std::chrono_literals::operator""ms;
     static std::chrono::milliseconds readInterval = 1000ms;
 
     if (!device_is_ready(bme280_device)) {

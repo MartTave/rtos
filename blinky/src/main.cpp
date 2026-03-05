@@ -3,7 +3,7 @@
 * @file        : main.cpp
 * @brief       : Led blinking module
 * @author      : Martin Tavernier <martin.tavernier@hevs.ch>
-* @date        : 19. March 1503
+* @date        : 05.03.2026
 ******************************************************************************
 * @copyright   : Copyright (c) 2026
 *                HEVS
