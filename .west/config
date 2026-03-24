@@ -7,4 +7,3 @@ base = deps/zephyr
 
 [build]
 board = nrf5340dk/nrf5340/cpuapp
-

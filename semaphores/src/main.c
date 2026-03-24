@@ -23,7 +23,7 @@ LOG_MODULE_REGISTER(app);
 // create kernel objects as global variables
 // other thread related data
 static struct k_thread other_thread;
-#define OTHER_THREAD_STACKSIZE 2048
+static const size_t OTHER_THREAD_STACKSIZE = 2048;
 K_THREAD_STACK_DEFINE(other_thread_stack, OTHER_THREAD_STACKSIZE);
 // semaphores used by both threads
 K_SEM_DEFINE(SEM1, 1, 1)
@@ -53,7 +53,7 @@ int main(void) {
     k_timeout_t delay = K_FOREVER;
     k_tid_t other_thread_tid = k_thread_create(
         &other_thread, other_thread_stack, OTHER_THREAD_STACKSIZE,
-        other_thread_entry, NULL, NULL, NULL, prio, options, delay);
+        other_thread_entry, nullptr, nullptr, nullptr, prio, options, delay);
 
 #if CONFIG_USERSPACE == 1
     k_thread_access_grant(&other_thread, &SEM1, &SEM2);

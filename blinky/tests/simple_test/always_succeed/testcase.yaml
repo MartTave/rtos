@@ -1,0 +1,4 @@
+tests:
+  simple_test.always_succeed:
+    tags:
+      - cpp

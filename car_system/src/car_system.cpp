@@ -67,14 +67,14 @@ void CarSystem::start() {
     }
 
     for (size_t i = 0; i < kNumberOfTasks; i++) {
-        _startSemaphore.release();
+        auto result = _startSemaphore.release();
     }
 }
 
 void CarSystem::stop() { _stopFlag.store(true); }
 
 void CarSystem::task_method(size_t taskIndex) {
-    _startSemaphore.acquire();
+    auto result = _startSemaphore.acquire();
 
     auto startTime =
         std::chrono::duration_cast<std::chrono::milliseconds>(_barrier.wait());

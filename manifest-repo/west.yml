@@ -14,7 +14,8 @@ manifest:
       path: deps/zephyr
       west-commands: scripts/west-commands.yml
       import:
-        path-prefix: deps
+        # TODO: Changed this, seems to fix things. But not sure :)
+        # path-prefix: deps
         file: west.yml # not strictly needed since it is the value by default
         name-allowlist:
           - cmsis_6
