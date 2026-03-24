@@ -29,10 +29,9 @@
 
 LOG_MODULE_REGISTER(sensor_bm280, CONFIG_APP_LOG_LEVEL);
 
-#define BME280_NODE DT_INST(0, bosch_bme280)
+static const struct device* bme280_device = DEVICE_DT_GET(DT_INST(0, bosch_bme280));
 
 void read_sensor() {
-    static const struct device* bme280_device = DEVICE_DT_GET(BME280_NODE);
 
     using std::chrono_literals::operator""ms;
     static std::chrono::milliseconds readInterval = 1000ms;
@@ -73,7 +72,7 @@ int main(void) {
 
     res = thread.join();
     if (!res) {
-        LOG_ERR("Could not join thread: %d", (int)res.error());
+        LOG_ERR("Could not join thread: %d", static_cast<int>(res.error()));
         return -1;
     }
 
