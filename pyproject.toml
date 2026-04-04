@@ -63,3 +63,8 @@ dependencies = [
     "windows-curses>=2.4.1 ; sys_platform == 'win32'",
     "yamllint>=1.38.0",
 ]
+
+[tool.uv.workspace]
+members = [
+    "car_sim",
+]

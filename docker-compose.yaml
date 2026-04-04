@@ -1,0 +1,9 @@
+services:
+  dev:
+    image: zephyrprojectrtos/ci:v0.29.1
+    container_name: rtos-dev
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/workspace
+    working_dir: /workspace

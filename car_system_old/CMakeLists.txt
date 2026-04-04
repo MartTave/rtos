@@ -13,4 +13,6 @@ target_sources(
     PRIVATE
     src/main.cpp
     src/car_system.cpp
+    src/sporadic_task_generator.cpp
+    src/deferrable_server.cpp
 )

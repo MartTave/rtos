@@ -1,0 +1,14 @@
+menu "Zephyr"
+source "Kconfig.zephyr"
+endmenu
+
+module = APP
+module-str = APP
+source "subsys/logging/Kconfig.template.log_config"
+
+config PHASE_B
+    bool "Enable Phase B - Aperiodic Tasks"
+    default n
+    help
+      Enable Phase B which adds aperiodic tasks (Presence Detection and
+      Search for Peripheral Devices)

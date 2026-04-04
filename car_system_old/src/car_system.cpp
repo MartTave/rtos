@@ -37,9 +37,11 @@ namespace car_system {
 
 namespace {
 
-constexpr const char* kTask1Name = "Task1";
-constexpr const char* kTask2Name = "Task2";
-constexpr const char* kTask3Name = "Task3";
+constexpr const char* kEngineName           = "Engine";
+constexpr const char* kDisplayName          = "Display";
+constexpr const char* kTireName             = "Tire";
+constexpr const char* kRainName             = "Rain";
+constexpr const char* kDeferrableServerName = "DefServer";
 
 }  // namespace
 
@@ -47,13 +49,29 @@ CarSystem::CarSystem() {
     _taskMethods[0] = [this]() { task_method(0); };
     _taskMethods[1] = [this]() { task_method(1); };
     _taskMethods[2] = [this]() { task_method(2); };
+    _taskMethods[3] = [this]() { task_method(3); };
+
+#if CONFIG_PHASE_B
+    _taskMethods[4] = [this]() {
+        _deferrableServer.start(
+            _barrier, _deferrableServerInfo, _sporadicTaskGenerator);
+    };
+#endif  // CONFIG_PHASE_B
 
     _threads[0] = std::make_unique<zpp_lib::Thread>(
-        zpp_lib::PreemptableThreadPriority::PriorityRealtime, kTask1Name);
+        zpp_lib::PreemptableThreadPriority::PriorityRealtime, kEngineName);
     _threads[1] = std::make_unique<zpp_lib::Thread>(
-        zpp_lib::PreemptableThreadPriority::PriorityHigh, kTask2Name);
+        zpp_lib::PreemptableThreadPriority::PriorityHigh, kDisplayName);
     _threads[2] = std::make_unique<zpp_lib::Thread>(
-        zpp_lib::PreemptableThreadPriority::PriorityAboveNormal, kTask3Name);
+        zpp_lib::PreemptableThreadPriority::PriorityAboveNormal, kTireName);
+    _threads[3] = std::make_unique<zpp_lib::Thread>(
+        zpp_lib::PreemptableThreadPriority::PriorityNormal, kRainName);
+
+#if CONFIG_PHASE_B
+    _threads[4] = std::make_unique<zpp_lib::Thread>(
+        zpp_lib::PreemptableThreadPriority::PriorityBelowNormal,
+        kDeferrableServerName);
+#endif  // CONFIG_PHASE_B
 }
 
 void CarSystem::start() {
@@ -69,6 +87,10 @@ void CarSystem::start() {
     for (size_t i = 0; i < kNumberOfTasks; i++) {
         auto result = _startSemaphore.release();
     }
+
+#if CONFIG_PHASE_B
+    _sporadicTaskGenerator.start(_barrier);
+#endif  // CONFIG_PHASE_B
 }
 
 void CarSystem::stop() { _stopFlag.store(true); }
@@ -86,13 +108,14 @@ void CarSystem::task_method(size_t taskIndex) {
         SEGGER_SYSVIEW_MarkStart(taskIndex);
 #endif  // CONFIG_SEGGER_SYSTEMVIEW
 
-        zpp_lib::ThisThread::busy_wait(_taskInfos[taskIndex].computationTime);
+        zpp_lib::ThisThread::busy_wait(
+            _periodicTaskInfos[taskIndex]._computationTime);
 
 #ifdef CONFIG_SEGGER_SYSTEMVIEW
         SEGGER_SYSVIEW_MarkStop(taskIndex);
 #endif  // CONFIG_SEGGER_SYSTEMVIEW
 
-        nextPeriodStart += _taskInfos[taskIndex].period;
+        nextPeriodStart += _periodicTaskInfos[taskIndex]._period;
         zpp_lib::ThisThread::sleep_until(nextPeriodStart);
     }
 }

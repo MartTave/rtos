@@ -1,3 +1,6 @@
 [submodule "misra-checker"]
 	path = misra-checker
 	url = git@github.com:EmbReal/misra-checker.git
+[submodule "car_sim"]
+	path = car_sim
+	url = ./car_sim
