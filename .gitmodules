@@ -1,3 +1,0 @@
-[submodule "misra-checker"]
-	path = misra-checker
-	url = git@github.com:EmbReal/misra-checker.git
