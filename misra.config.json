@@ -1,6 +1,6 @@
 {
     "sources": [
-        "./src"
+        "./car_sim"
     ],
     "fail_on": "required",
     "exclude_rules": [
