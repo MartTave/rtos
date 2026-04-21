@@ -3,7 +3,7 @@ name: MISRA C++ 2023 — Code Analysis
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "phase_a", "phase_b"]
   pull_request:
     branches: ["main"]
 
