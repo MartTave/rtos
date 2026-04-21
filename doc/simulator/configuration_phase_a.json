@@ -1,0 +1,79 @@
+{
+  "cyclesPerMs": 1000000,
+  "durationMs": 750,
+  "duration": 750000000,
+  "overheadSchedule": 0,
+  "overheadActivate": 0,
+  "overheadTerminate": 0,
+  "schedulerClass": "simso.schedulers.RM_mono",
+  "taskAdditionalFields": [],
+  "procAdditionalFields": [],
+  "schedAdditionalFields": [],
+  "etmAdditionalFields": [],
+  "customSched": false,
+  "customSchedCode": "",
+  "customSchedName": "Custom",
+  "etm": "wcet",
+  "tasks": [
+    {
+      "id": 1,
+      "type": 0,
+      "name": "Engine",
+      "activationDate": 0,
+      "activationDates": "-",
+      "period": 50,
+      "deadline": 50,
+      "wcet": 10,
+      "followedBy": -1,
+      "$$hashKey": "object:250"
+    },
+    {
+      "id": 2,
+      "type": 0,
+      "name": "Display",
+      "activationDate": 0,
+      "activationDates": "-",
+      "period": 125,
+      "deadline": 125,
+      "wcet": 15,
+      "followedBy": -1,
+      "$$hashKey": "object:272"
+    },
+    {
+      "id": 3,
+      "type": 0,
+      "name": "Tire",
+      "activationDate": 0,
+      "activationDates": "-",
+      "period": 200,
+      "deadline": 200,
+      "wcet": 10,
+      "followedBy": -1,
+      "$$hashKey": "object:294"
+    },
+    {
+      "id": 4,
+      "type": 0,
+      "name": "Rain",
+      "activationDate": 0,
+      "activationDates": "-",
+      "period": 250,
+      "deadline": 250,
+      "wcet": 25,
+      "followedBy": -1,
+      "$$hashKey": "object:316"
+    }
+  ],
+  "processors": [
+    {
+      "id": 0,
+      "name": "P0",
+      "csOverhead": 0,
+      "clOverhead": 0,
+      "speed": 1,
+      "caches": [],
+      "$$hashKey": "uiGrid-00N"
+    }
+  ],
+  "caches": []
+}

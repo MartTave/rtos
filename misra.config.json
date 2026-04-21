@@ -1,7 +1,6 @@
 {
     "sources": [
-        "blinky",
-        "car_system"
+        "./src"
     ],
     "fail_on": "required",
     "exclude_rules": [

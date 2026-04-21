@@ -8,4 +8,5 @@
   DerivePointerAlignment: false
   PointerAlignment: Left
   BinPackArguments: false
+  AccessModifierOffset: -3  # This moves 'public:' from 4 spaces back to 1 space
   BinPackParameters: false
